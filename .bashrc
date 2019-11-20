@@ -110,7 +110,8 @@ alias Fl='sudo pacman -Fl '
 alias Fy='sudo pacman -Fy '
 alias Syu='sudo pacman -Syu '
 
-alias emacs='emacs -nw '
+alias emacsd='\emacs -nw --daemon'
+alias emacs='emacsclient -nw '
 alias mpv='mpv --hwdec=yes '
 
 ########## END ALIASes ############
