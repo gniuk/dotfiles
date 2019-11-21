@@ -125,4 +125,4 @@ export GOPATH=~/godir
 export PATH=$GOPATH/bin:$PATH
 export TERM=xterm-256color
 
-export PS1="\[\e]0;\w\a\]\n\[\e[01;32m\]\u@\h \[\e[31m\]\w \[\e[33m\][\d \t]\[\e[0m\]\n\[\e[31m\]\$ \e[m"
+export PS1="\[\e[0m\]\n\[\e[01;32m\][\d \t] \[\e[33m\]\u@\h \[\e[31m\]\w \n\[\e[31m\]\$ \[\e[0m\]"
