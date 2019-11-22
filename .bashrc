@@ -125,4 +125,12 @@ export GOPATH=~/godir
 export PATH=$GOPATH/bin:$PATH
 export TERM=xterm-256color
 
+# keychain ssh agent, Funtoo keychain needed
+if [ -f ~/.ssh/id_dsa ]; then
+    eval `keychain --eval --agents ssh id_dsa`
+fi
+if [ -f ~/.ssh/id_rsa ]; then
+    eval `keychain --eval --agents ssh id_rsa`
+fi
+
 export PS1="\[\e[0m\]\n\[\e[1;36m\][\d \t] \[\e[1;33m\]\u@\h \[\e[1;31m\]\w \n\$ \[\e[0m\]"
