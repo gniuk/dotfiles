@@ -142,8 +142,11 @@ export QT_QPA_PLATFORM=wayland-egl
 export CLUTTER_BACKEND=wayland
 export SDL_VIDEODRIVER=wayland
 
-export GOPATH=~/godir
-export PATH=$GOPATH/bin:$PATH
+GO_WORKING_DIR=~/godir
+GO_OTHER_PKG_DIR=
+export GO_PLAYGROUND_BASE_DIR="$GO_WORKING_DIR/src/goplayground"
+export GOPATH=$GO_WORKING_DIR:$GO_OTHER_PKG_DIR
+export PATH=$GO_WORKING_DIR/bin:$PATH
 export TERM=xterm-256color
 
 ########## Config color for less used by manpages as a pager ##########
