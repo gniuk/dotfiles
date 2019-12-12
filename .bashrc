@@ -103,32 +103,34 @@ alias grep='grep --color'
 alias egrep='egrep --color'
 alias fgrep='fgrep --color'
 
-if [ -n "$(grep -i arch /etc/os-release)" ]; then
-    alias S='sudo pacman -S '
-    alias Ss='sudo pacman -Ss '
-    alias Qo='sudo pacman -Qo '
-    alias Qi='sudo pacman -Qi '
-    alias Fl='sudo pacman -Fl '
-    alias Fy='sudo pacman -Fy '
-    alias Syu='sudo pacman -Syu '
-fi
-if [ -n "$(grep -i centos /etc/os-release)" ]; then
-    alias S='sudo yum install '
-    alias Ss='sudo yum search '
-    alias Qo='sudo yum whatprovides '
-    alias Qi='sudo yum deplist '
-    alias Fl='sudo repoquery -l '
-    alias Fy='sudo yum makecache '
-    alias Syu='sudo yum update '
-fi
-if [ -n "$(grep -i ubuntu /etc/os-release)" ]; then
-    alias S='sudo apt-get install '
-    alias Ss='sudo apt-cache search '
-    alias Qo='sudo apt-file search '
-    alias Qi='sudo apt-cache depends '
-    alias Fl='sudo apt-file list '
-    alias Fy='sudo apt-get update && sudo apt-file update '
-    alias Syu='sudo apt-get upgrade '
+if [ -e /etc/os-release ]; then
+    if [ -n "$(grep -i arch /etc/os-release)" ]; then
+        alias S='sudo pacman -S '
+        alias Ss='sudo pacman -Ss '
+        alias Qo='sudo pacman -Qo '
+        alias Qi='sudo pacman -Qi '
+        alias Fl='sudo pacman -Fl '
+        alias Fy='sudo pacman -Fy '
+        alias Syu='sudo pacman -Syu '
+    fi
+    if [ -n "$(grep -i centos /etc/os-release)" ]; then
+        alias S='sudo yum install '
+        alias Ss='sudo yum search '
+        alias Qo='sudo yum whatprovides '
+        alias Qi='sudo yum deplist '
+        alias Fl='sudo repoquery -l '
+        alias Fy='sudo yum makecache '
+        alias Syu='sudo yum update '
+    fi
+    if [ -n "$(grep -i ubuntu /etc/os-release)" ]; then
+        alias S='sudo apt-get install '
+        alias Ss='sudo apt-cache search '
+        alias Qo='sudo apt-file search '
+        alias Qi='sudo apt-cache depends '
+        alias Fl='sudo apt-file list '
+        alias Fy='sudo apt-get update && sudo apt-file update '
+        alias Syu='sudo apt-get upgrade '
+    fi
 fi
 
 alias emacsd='\emacs -nw --daemon'
