@@ -19,7 +19,7 @@ HISTSIZE=100000
 HISTFILESIZE=2000000
 
 # Save and reload history after each command finishes
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; history -c; history -r;"
 
 ############ END HISTORY OPTIONS ##############
 
