@@ -1,0 +1,6 @@
+36a37
+>     key <PRSC> { [ Alt_R, Meta_R ] };
+38c39
+<     modifier_map Mod1 { <LWIN>, <RWIN> };
+---
+>     modifier_map Mod1 { <LWIN>, <RWIN>, <PRSC> };
