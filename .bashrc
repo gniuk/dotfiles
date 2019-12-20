@@ -100,6 +100,13 @@ c () {
     ssh -A -p $remote_port -J ${myname}@${svr1}:$svr1_port ${myname}@$1
 }
 
+scpo () {
+    scp -r -P $remote_port -oProxyJump=${myname}@${svr1}:${svr1_port} $1 ${myname}@$2
+}
+scpi () {
+    scp -r -P $remote_port -oProxyJump=${myname}@${svr1}:${svr1_port} ${myname}@$1 $2
+}
+
 ############ END CUSTOM FUNCTIONS ##############
 
 ############ ALIASes ##############
