@@ -88,6 +88,18 @@ cd_func ()
   return 0
 }
 
+# -------------------- simplify ssh --------------------
+# openssh7.3p1+ needed
+svr1="server1_name"
+svr1_port="server1_port"
+remote_port="remote_port"
+myname=$(whoami)
+c () {
+    # usage: c "host"
+    # change the variables above and the command below as needed
+    ssh -A -p $remote_port -J ${myname}@${svr1}:$svr1_port ${myname}@$1
+}
+
 ############ END CUSTOM FUNCTIONS ##############
 
 ############ ALIASes ##############
