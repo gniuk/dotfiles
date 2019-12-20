@@ -126,7 +126,7 @@ if [ -e /etc/os-release ]; then
         alias S='sudo apt-get install '
         alias Ss='sudo apt-cache search '
         alias Qo='sudo apt-file search '
-        alias Qi='sudo apt-cache depends '
+        alias Qi='sudo apt-cache show '
         alias Fl='sudo apt-file list '
         alias Fy='sudo apt-get update && sudo apt-file update '
         alias Syu='sudo apt-get upgrade '
