@@ -152,6 +152,12 @@ if [ -e /etc/os-release ]; then
     fi
 fi
 
+if [ -e /usr/bin/nvim ]; then
+    alias vi=nvim
+elif [ -e /usr/bin/vim ]; then
+    alias vi=vim
+fi
+
 alias emacsd='\emacs -nw --daemon'
 alias emacs='emacsclient -nw '
 alias mpv='mpv --hwdec=yes '
