@@ -212,4 +212,4 @@ if [ -f ~/.ssh/id_rsa ]; then
     eval `keychain --eval --agents ssh id_rsa`
 fi
 
-export PS1="\[\e[0m\]\n\[\e[1;36m\][\d \t] \[\e[1;33m\]\u@\h \[\e[1;31m\]\w \n⌘ \$ \[\e[0m\]"
+export PS1="\[\e[0m\]\n\[\e[1;36m\][\d \t] \[\e[1;33m\]\u@\h \[\e[1;31m\]\w \n\[\e[1;31m\]⌘ \$ \[\e[0m\]"
