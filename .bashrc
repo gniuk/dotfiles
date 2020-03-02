@@ -174,7 +174,8 @@ GO_OTHER_PKG_DIR=
 export GO_PLAYGROUND_BASE_DIR="$GO_WORKING_DIR/src/goplayground"
 export GOPATH=$GO_WORKING_DIR:$GO_OTHER_PKG_DIR
 export PATH=$GO_WORKING_DIR/bin:$PATH
-export TERM=xterm-256color
+# export TERM=xterm-256color
+export TERM=xterm-24bit         # true color support, refer to terminal-truecolor-setup
 
 ########## Config color for less used by manpages as a pager ##########
 # https://github.com/jeaye/stdman
