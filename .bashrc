@@ -90,6 +90,7 @@ cd_func ()
 
 # -------------------- simplify ssh --------------------
 # openssh7.3p1+ needed
+alias ssh='TERM=xterm-256color ssh'
 svr1="server1_name"
 svr1_port="server1_port"
 remote_port="remote_port"
