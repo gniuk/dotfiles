@@ -1,5 +1,12 @@
 ;; AutoHotKey
 
+; better to firstly remap single key using SharpKeys. https://github.com/randyrants/sharpkeys
+; Left Alt -> Left Ctrl
+; Left Ctrl -> Left Windows
+; Left Windows -> Left Alt
+; Right Alt -> Right Ctrl
+; Right Windows -> Right Alt
+
 ; simulate i3wm or sway, switch to first(actually left) workspace
 ^1::
 Send, #^{Left}
