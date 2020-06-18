@@ -1,0 +1,27 @@
+* Settings on Microsoft Windows
+
+** Keyboard
+*** SharpKeys
+Load the RegularMap.skl in SharpKeys.
+The Keyboard is mapped like this:
+
+- L_Alt  -> L_Ctrl
+- L_Win  -> L_Alt
+- L_Ctrl -> L_Win
+- R_Alt  -> R_Ctrl
+- R_Win  -> R_Alt
+
+*** AutoHotkey
+- windowsconf.ahk
+
+The original personal config, which uses Ctrl-1, Ctrl-2 to switch workspaces around,
+
+and Win-[ to diminish window title bar.
+
+- windows-desktop-switcher
+
+Third party project. Use desktop_switcher.ahk script to switch workspace.
+
+Got some behaviors as in Linux i3wm/sway style, i.e. Ctrl-[1-5] to choose exactly the workspace. 
+
+Custom instructions added to use Win-[ and Win-] to diminish and resume window title bar.
