@@ -5,6 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# make C-s i-search, i.e. search forward
+[[ $- == *i* ]] && stty -ixon
+
 ############## HISTORY OPTIONS ################
 
 # Don't put duplicate lines or lines starting with space in the history.
