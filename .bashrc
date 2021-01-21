@@ -12,17 +12,19 @@
 
 # Don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
 
 # Append to the history file, don't overwrite it
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=100000
-HISTFILESIZE=2000000
+HISTSIZE=200000
+HISTFILESIZE=200000
 
 # Save and reload history after each command finishes
-export PROMPT_COMMAND="history -a; history -c; history -r;"
+if [[ ${PROMPT_COMMAND} != *"history -a"* ]]; then
+    export PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
+fi
 
 ############ END HISTORY OPTIONS ##############
 
