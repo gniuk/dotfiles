@@ -7,7 +7,7 @@
 exec fcitx -d
 ### Variables
 #
-# Logo key. Use Mod1 for Alt.
+# Mod4: Win Logo key. Mod1: Alt.
 set $mod Mod4
 # Home row direction keys, like vim
 set $left h
@@ -16,7 +16,8 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 # set $term urxvt
-set $term lxterminal
+# set $term lxterminal
+set $term gnome-terminal
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
@@ -24,9 +25,16 @@ set $term lxterminal
 set $menu bemenu-run | xargs swaymsg exec --
 
 # clipboard manager for wayland, bad
-exec clipman -d 1>> ~/.local/clipman.log 2>&1 &
-bindsym F10 exec clipman -s
-bindsym $mod+semicolon exec clipman -s
+# exec clipman -d 1>> ~/.local/clipman.log 2>&1 &
+# bindsym F10 exec clipman -s
+# bindsym $mod+semicolon exec clipman -s
+exec wl-paste -t text --watch clipman store 1>> ~/.local/clipman.log 2>&1 &
+# exec wl-paste -p -t text --watch clipman store --histpath="~/.local/share/clipman-primary.json
+exec clipman restore
+bindsym F10 exec clipman pick
+bindsym $mod+semicolon exec clipman pick
+# bindsym F10 exec clipman pick --histpath="~/.local/share/clipman-primary.json
+# bindsym $mod+semicolon exec clipman pick --histpath="~/.local/share/clipman-primary.json
 
 ### Output configuration
 #
@@ -34,7 +42,8 @@ bindsym $mod+semicolon exec clipman -s
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # output * bg /home/gniuk/Downloads/galaxy_21-wallpaper-2560x1440.jpg fill
 # output * bg /home/gniuk/Downloads/linux-cmd.png fill
-output * bg /home/gniuk/Downloads/emacs0.png fill
+# output * bg /home/gniuk/Downloads/emacs0.png fill
+output * bg /home/gniuk/Downloads/vim-1.png fill
 #
 # Example configuration:
 #
@@ -73,16 +82,37 @@ output eDP-1 scale 1
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+# We map space to ctrl now! keep this as a fallback choice.
 input "1:1:AT_Translated_Set_2_keyboard" {
-    xkb_options altwin:ctrl_alt_win
+#     xkb_options altwin:ctrl_alt_win
+    repeat_rate 45
 }
+
+# input "2:10:TPPS\\/2_Elan_TrackPoint" {
+#     pointer_accel 1.5
+# }
+
+
 input "2:7:SynPS/2_Synaptics_TouchPad" {
     dwt enabled
     tap enabled
     natural_scroll enabled
     middle_emulation enabled
-    pointer_accel 0.35
-    scroll_factor 0.18
+    # pointer_accel 0.35
+    # scroll_factor 0.18
+    pointer_accel 0.45
+    scroll_factor 0.28
+}
+
+input "1739:0:Synaptics_TM3289-021" {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+    # pointer_accel 0.35
+    # scroll_factor 0.18
+    pointer_accel 1.0
+    scroll_factor 1.2
 }
 ### Key bindings
 #
@@ -92,11 +122,16 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
     bindsym $mod+Return exec $term
 
     # start firefox
-    bindsym $mod+Shift+Return exec firefox-nightly
+    # bindsym $mod+Shift+Return exec firefox-nightly
+    # start google-chrome
+    bindsym $mod+Shift+Return exec chrome
 
     # kill focused window
     # bindsym $mod+Shift+q kill
     bindsym $mod+q kill
+
+    # start pgtk-nativecomp gui emacs
+    bindsym $mod+m exec emacs
 
     # start your launcher
     bindsym $mod+d exec $menu
@@ -159,6 +194,7 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
     bindsym Control+5 workspace 5
     bindsym Control+6 workspace 6
     # move focused container to workspace
+
     bindsym $mod+Shift+1 move container to workspace 1
     bindsym $mod+Shift+2 move container to workspace 2
     bindsym $mod+Shift+3 move container to workspace 3
@@ -233,7 +269,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+r mode "resize"
+bindsym $mod+r mode "resize"
 
 #
 # Status Bar:
@@ -246,6 +282,7 @@ bar {
     # hidden_state show
     # status_padding 0
     mode invisible
+    # mode dock
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
@@ -274,7 +311,10 @@ for_window [app_id="blueman-manager"] floating enable
 for_window [title="Grimedit"] floating enable
 for_window [app_id="remote-viewer"] fullscreen
 
-xwayland enable
+# make gui emacs fullscreen
+# for_window [app_id="emacs"] fullscreen
+
+# xwayland enable
 
 ## Sreen brightness controls
 # increase screen brightness
@@ -282,6 +322,9 @@ bindsym XF86MonBrightnessUp exec light -A 5
 
 # decrease screen brightness
 bindsym XF86MonBrightnessDown exec light -U 5
+
+# toggle mute
+bindsym XF86AudioMute exec pulsemixer --toggle-mute
 
 # toggle display Brightness between 0 and 32
 
