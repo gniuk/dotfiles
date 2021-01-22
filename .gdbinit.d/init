@@ -1,0 +1,39 @@
+# print pretty data struct
+set print pretty on
+# history
+set history size 500
+set history remove-duplicates unlimited
+# array print
+set print array off
+set print array-indexes on
+# Don't show "Type <return> to continue, or q <return> to quit"
+set pagination off
+
+# project init
+# set auto-load local-gdbinit on
+# add-auto-load-safe-path /path/to/my/projects/
+
+# Don't truncate array or string
+# use printf "%s\n", str to stop print when encounter '\0'
+set print elements 0
+define ps
+  printf "%s\n", $arg0
+end
+
+
+## gdb dashboard customizations
+dashboard -layout assembly breakpoints history registers stack threads variables
+
+# dashboard layout backto default
+define dd
+  dashboard -layout assembly breakpoints history registers stack threads variables
+end
+# dashboard layout show all
+define dda
+  dashboard -layout assembly breakpoints expressions history memory registers source stack threads variables
+end
+
+## other frontend
+# source ~/owndir/gef/gef.py
+# source ~/owndir/pwndbg/gdbinit.py
+
