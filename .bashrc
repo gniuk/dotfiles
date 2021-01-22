@@ -113,6 +113,11 @@ scpi () {
     scp -r -P $remote_port -oProxyJump=${myname}@${svr1}:${svr1_port} ${myname}@$1 $2
 }
 
+# -------------------- remove bash history duplicates and keep order --------------------
+his () {
+    nl ~/.bash_history | sort -k 2  -k 1,1nr| uniq -f 1 | sort -n | cut -f 2 > ~/.tmp_history
+    mv ~/.tmp_history ~/.bash_history
+}
 ############ END CUSTOM FUNCTIONS ##############
 
 ############ ALIASes ##############
