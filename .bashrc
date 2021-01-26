@@ -139,6 +139,8 @@ alias grep='grep --color'
 alias egrep='egrep --color'
 alias fgrep='fgrep --color'
 
+alias rf='rm -rf'
+
 if [ -e /etc/os-release ]; then
     if [ -n "$(grep -i arch /etc/os-release)" ]; then
         alias S='sudo pacman -S '
