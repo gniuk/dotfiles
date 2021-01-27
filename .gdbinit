@@ -172,7 +172,8 @@ See the `prompt` attribute. This value is used as a Python format string.''',
                 'default': '32'
             },
             'style_low': {
-                'default': '1;30'
+                # 'default': '1;30'
+                'default': '0;34'
             },
             'style_high': {
                 'default': '1;37'
