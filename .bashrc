@@ -124,6 +124,12 @@ his () {
     mv ~/.tmp_history ~/.bash_history
 }
 
+# ---------- ediff-files command line, better than vimdiff without vimrc config ----------
+edf () {
+    emacs -nw -q --eval \
+          "(progn (menu-bar-mode 0) (global-display-line-numbers-mode) (load-theme 'tango) (setq ediff-split-window-function 'split-window-horizontally) (ediff-files \"$1\" \"$2\"))"
+}
+
 ############ END CUSTOM FUNCTIONS ##############
 
 ############ ALIASes ##############
