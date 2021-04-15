@@ -113,6 +113,7 @@ scpi () {
     scp -r -P $remote_port -oProxyJump=${myname}@${svr1}:${svr1_port} ${myname}@$1 $2
 }
 
+# kill qemu-system-i386 myos
 k () {
     qospid=$(ps x | grep [q]emu.*myos | awk '{print $1}')
     kill $qospid
