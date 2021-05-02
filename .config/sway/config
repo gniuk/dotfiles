@@ -31,8 +31,8 @@ set $menu bemenu-run | xargs swaymsg exec --
 exec wl-paste -t text --watch clipman store 1>> ~/.local/clipman.log 2>&1 &
 # exec wl-paste -p -t text --watch clipman store --histpath="~/.local/share/clipman-primary.json
 exec clipman restore
-bindsym F10 exec clipman pick
-bindsym $mod+semicolon exec clipman pick
+bindsym F10 exec clipman pick -t bemenu
+bindsym $mod+semicolon exec clipman pick -t bemenu
 # bindsym F10 exec clipman pick --histpath="~/.local/share/clipman-primary.json
 # bindsym $mod+semicolon exec clipman pick --histpath="~/.local/share/clipman-primary.json
 
