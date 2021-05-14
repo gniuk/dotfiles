@@ -1,0 +1,10 @@
+* Direcotries
+- .config/mintty/emojis/noto
+- .config/mintty/emojis/common
+
+* Files
+- .profile
+- .bash_profile
+- .bashrc
+- .inputrc
+- .minttyrc
