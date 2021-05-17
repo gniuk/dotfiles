@@ -131,6 +131,8 @@ edf () {
           "(progn (menu-bar-mode 0) (global-display-line-numbers-mode) (load-theme 'tango) (setq ediff-split-window-function 'split-window-horizontally) (ediff-files \"$1\" \"$2\"))"
 }
 
+alias gdf='git difftool -t meld'
+
 ############ END CUSTOM FUNCTIONS ##############
 
 ############ ALIASes ##############
