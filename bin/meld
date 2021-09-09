@@ -2,6 +2,8 @@
 
 # https://emacs.stackexchange.com/questions/3618/launch-emacs-with-ediff-files-of-ediff-directories-from-command-line by J C Gonzalez
 # improved by gniuk
+# alias gdf='export GDF_FAST=no; git difftool -t meld '
+# alias gdff='export GDF_FAST=yes; git difftool -t meld '
 
 EMACS=$(which emacs)
 
@@ -53,8 +55,11 @@ fi
 ## Run Emacs with ediff-files function
 # printf "Comparing files %s and %s . . .  " "$item1" "$item2"
 ## raw emacs with some basic setup for better looking diff
-# $EMACS -nw -q --eval "(progn (menu-bar-mode 0) (global-display-line-numbers-mode) (load-theme 'tango) (setq ediff-split-window-function 'split-window-horizontally) ($diff_fn \"$item1\" \"$item2\" $opt))"
+if [ "$GDF_FAST" = "yes" ]; then
+    $EMACS -nw -q --eval "(progn (menu-bar-mode 0) (global-display-line-numbers-mode) (load-theme 'tango) (setq ediff-split-window-function 'split-window-horizontally) ($diff_fn \"$item1\" \"$item2\" $opt))"
+else
 ## use my sophisticated emacs config, without setup the c/c++ ide for diff git temp files
-$EMACS -nw --eval "(progn (setq gniuk-lsp-c-cpp--enabled nil) ($diff_fn \"$item1\" \"$item2\" $opt))"
+    $EMACS -nw --eval "(progn (setq gniuk-lsp-c-cpp--enabled nil) ($diff_fn \"$item1\" \"$item2\" $opt))"
+fi
 
 exit 0
