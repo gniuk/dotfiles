@@ -1,0 +1,5 @@
+- JOB: "intercept-dual -g $DEVNODE | dual-function-keys -c /etc/interception/space2ctrl.yaml | uinput -d $DEVNODE"
+  DEVICE:
+    NAME: "AT Translated Set 2 keyboard"
+    EVENTS:
+      EV_KEY: [ KEY_SPACE ]

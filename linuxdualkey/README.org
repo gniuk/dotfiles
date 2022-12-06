@@ -1,0 +1,30 @@
+* git clone
+git clone https://gitlab.com/interception/linux/plugins/dual-function-keys.git
+git clone https://gitlab.com/interception/linux/tools.git interception-tools
+
+* dual-function-keys
+make PREFIX=/usr
+sudo make PREFIX=/usr install
+
+* interception-tools
+** fix confict with Bear
+CMakeLists.txt: target intercept -> intercept-dual
+
+sudo cp udevmon.service /usr/lib/systemd/system/
+sudo cp udevmon.service /lib/systemd/system/
+
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+cmake --build build
+cd build; sudo make install
+
+* find keyboard name
+./findkbdname
+
+* copy conf to dest dir
+sudo mkdir -p /etc/interception
+sudo cp *.yaml /etc/interception/
+
+* enable and start service
+sudo systemctl enable udevmon
+sudo systemctl start udevmon
+sudo systemctl status udevmon

@@ -1,0 +1,2 @@
+# uinput -p -d /dev/input/by-id/usb-XXXXXX or
+cat /proc/bus/input/devices
