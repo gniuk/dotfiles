@@ -1,6 +1,6 @@
-#
-# ~/.bashrc
-#
+# ~/.bashrc: executed by bash(1) for non-login shells (i.e. interactive shells)
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -37,7 +37,21 @@ shopt -s cdspell
 # Use case-insensitive filename globbing
 shopt -s nocaseglob
 
+# Check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# Make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
 ########## END OTHER SHELL OPTIONS ############
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 ########## CUSTOM FUNCTIONS ##########
 # copy from cygwin
@@ -104,6 +118,7 @@ c () {
     # usage: c "host"
     # change the variables above and the command below as needed
     ssh -A -p $remote_port -J ${myname}@${svr1}:$svr1_port ${myname}@$1
+    # ssh -o ConnectTimeout=1 -o ConnectionAttempts=1 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -A -p $remote_port -J ${myname}@$svr1:$svr1_port ${myname}@$1 $2
 }
 
 scpo () {
@@ -135,6 +150,9 @@ alias gdf='export GDF_FAST=no; git difftool -t meld '
 alias gdff='export GDF_FAST=yes; git difftool -t meld '
 
 ############ END CUSTOM FUNCTIONS ##############
+
+# Make C-s search forward
+[[ $- == *i* ]] && stty -ixon
 
 ############ ALIASes ##############
 alias ls='ls --color=auto'
@@ -193,6 +211,7 @@ alias mpv='mpv --hwdec=yes '
 
 ########## END ALIASes ############
 
+## for sway
 export GDK_BACKEND=wayland
 export QT_QPA_PLATFORM=wayland-egl
 export CLUTTER_BACKEND=wayland
@@ -245,5 +264,8 @@ fi
 # autojump settings
 # git://github.com/wting/autojump.git
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
+
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export PS1="\[\e[0m\]\n\[\e[1;36m\][\d \t] \[\e[1;33m\]\u@\h \[\e[1;31m\]\w \n\[\e[1;31m\]⌘ \$ \[\e[0m\]"
