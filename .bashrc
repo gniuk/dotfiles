@@ -212,10 +212,12 @@ alias mpv='mpv --hwdec=yes '
 ########## END ALIASes ############
 
 ## for sway
-export GDK_BACKEND=wayland
-export QT_QPA_PLATFORM=wayland-egl
-export CLUTTER_BACKEND=wayland
-export SDL_VIDEODRIVER=wayland
+if [ -n "$(which sway)" ]; then
+    export GDK_BACKEND=wayland
+    export QT_QPA_PLATFORM=wayland-egl
+    export CLUTTER_BACKEND=wayland
+    export SDL_VIDEODRIVER=wayland
+fi
 
 GO_WORKING_DIR=~/godir
 GO_OTHER_PKG_DIR=
