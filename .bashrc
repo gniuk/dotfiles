@@ -265,7 +265,11 @@ fi
 
 # autojump settings
 # git://github.com/wting/autojump.git
-[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
+if [ -s ~/.autojump/etc/profile.d/autojump.sh ]; then
+    source ~/.autojump/etc/profile.d/autojump.sh
+elif [ -s /usr/share/autojump/autojump.sh ]; then
+    . /usr/share/autojump/autojump.sh
+fi
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -14,10 +14,6 @@ if [ -n "$BASH_VERSION" ]; then
     if [ -f "$HOME/.bashrc" ]; then
 	. "$HOME/.bashrc"
     fi
-    # source autojump
-    if [ -f /usr/share/autojump/autojump.sh ]; then
-        . /usr/share/autojump/autojump.sh
-    fi
 fi
 
 # set PATH so it includes user's private bin directories
