@@ -205,9 +205,10 @@ elif [ -e /usr/bin/vim ]; then
     alias vi=vim
 fi
 
+alias em='emacs --nw'
 alias emacsd='\emacs -nw --daemon'
-alias emacs='emacsclient -nw '
-alias mpv='mpv --hwdec=yes '
+alias emc='emacsclient -nw'
+alias mpv='mpv --hwdec=yes'
 
 ########## END ALIASes ############
 
