@@ -190,7 +190,10 @@ if [ -e /etc/os-release ]; then
     fi
     if [ -n "$(grep -i ubuntu /etc/os-release)" ]; then
         alias S='sudo apt-get install '
-        alias Ss='sudo apt-cache search '
+#        alias Ss='sudo apt-cache search '
+# use original apt to search; mint has a wrapper for apt, infomation is mess
+# add --names-only option if search keyword in package's name only
+        alias Ss='sudo /usr/bin/apt search '
         alias Qo='sudo apt-file search '
         alias Qi='sudo apt-cache show '
         alias Fl='sudo apt-file list '
