@@ -3,7 +3,11 @@
 # for examples
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# [[ $- != *i* ]] && return
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 # make C-s i-search, i.e. search forward
 [[ $- == *i* ]] && stty -ixon
@@ -188,7 +192,7 @@ if [ -e /etc/os-release ]; then
         alias Fy='sudo yum makecache '
         alias Syu='sudo yum update '
     fi
-    if [ -n "$(grep -i ubuntu /etc/os-release)" ]; then
+    if [ -n "$(grep -i -e debian -e ubuntu /etc/os-release)" ]; then
         alias S='sudo apt-get install '
 #        alias Ss='sudo apt-cache search '
 # use original apt to search; mint has a wrapper for apt, infomation is mess
@@ -228,8 +232,13 @@ GO_OTHER_PKG_DIR=
 export GO_PLAYGROUND_BASE_DIR="$GO_WORKING_DIR/src/goplayground"
 export GOPATH=$GO_WORKING_DIR:$GO_OTHER_PKG_DIR
 export PATH=$GO_WORKING_DIR/bin:$PATH
-# export TERM=xterm-256color
-export TERM=xterm-24bit         # true color support, refer to terminal-truecolor-setup
+
+if [ -d "HOME/.terminfo" ]; then
+    export TERM=xterm-24bit         # true color support, refer to terminal-truecolor-setup
+    export COLORTERM=truecolor
+else
+    export TERM=xterm-256color
+fi
 
 ########## Config color for less used by manpages as a pager ##########
 # https://github.com/jeaye/stdman
@@ -277,5 +286,16 @@ fi
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 
 export PS1="\[\e[0m\]\n\[\e[1;36m\][\d \t] \[\e[1;33m\]\u@\h \[\e[1;31m\]\w \n\[\e[1;31m\]⌘ \$ \[\e[0m\]"

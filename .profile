@@ -17,9 +17,25 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export PAGER=less
-export TERM=xterm-24bit
-export COLORTERM=truecolor
+# PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+export PAGER=less
 export EDITOR=vi
+
+if [ -d "$HOME/.terminfo" ]; then
+    export TERM=xterm-24bit
+    export COLORTERM=truecolor
+else
+    export TERM=xterm-256color
+fi
+
