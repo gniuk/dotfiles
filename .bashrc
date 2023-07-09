@@ -9,10 +9,10 @@ case $- in
       *) return;;
 esac
 
+############## HISTORY OPTIONS ################
+
 # make C-s i-search, i.e. search forward
 [[ $- == *i* ]] && stty -ixon
-
-############## HISTORY OPTIONS ################
 
 # Don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -39,7 +39,8 @@ fi
 shopt -s cdspell
 
 # Use case-insensitive filename globbing
-shopt -s nocaseglob
+## This is horrible! Makes disaster when deleting files
+# shopt -s nocaseglob
 
 # Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -140,7 +141,7 @@ k () {
 
 # -------------------- remove bash history duplicates and keep order --------------------
 his () {
-    nl ~/.bash_history | sort -k 2  -k 1,1nr| uniq -f 1 | sort -n | cut -f 2 > ~/.tmp_history
+    nl ~/.bash_history | sort -k 2 -k 1,1nr| uniq -f 1 | sort -n | cut -f 2 > ~/.tmp_history
     mv ~/.tmp_history ~/.bash_history
 }
 
@@ -154,9 +155,6 @@ alias gdf='export GDF_FAST=no; git difftool -t meld '
 alias gdff='export GDF_FAST=yes; git difftool -t meld '
 
 ############ END CUSTOM FUNCTIONS ##############
-
-# Make C-s search forward
-[[ $- == *i* ]] && stty -ixon
 
 ############ ALIASes ##############
 alias ls='ls --color=auto'
@@ -172,6 +170,8 @@ alias egrep='egrep --color'
 alias fgrep='fgrep --color'
 
 alias rf='rm -rf'
+# alias speed='speedtest-cli --server 2406 --simple'
+alias speed='speedtest-cli --simple'
 
 if [ -e /etc/os-release ]; then
     if [ -n "$(grep -i arch /etc/os-release)" ]; then
@@ -179,11 +179,11 @@ if [ -e /etc/os-release ]; then
         alias Ss='sudo pacman -Ss '
         alias Qo='sudo pacman -Qo '
         alias Qi='sudo pacman -Qi '
+        alias Ql='sudo yay -Ql '
         alias Fl='sudo pacman -Fl '
         alias Fy='sudo pacman -Fy '
         alias Syu='sudo pacman -Syu '
-    fi
-    if [ -n "$(grep -i centos /etc/os-release)" ]; then
+    elif [ -n "$(grep -i centos /etc/os-release)" ]; then
         alias S='sudo yum install '
         alias Ss='sudo yum search '
         alias Qo='sudo yum whatprovides '
@@ -191,9 +191,8 @@ if [ -e /etc/os-release ]; then
         alias Fl='sudo repoquery -l '
         alias Fy='sudo yum makecache '
         alias Syu='sudo yum update '
-    fi
-    if [ -n "$(grep -i -e debian -e ubuntu /etc/os-release)" ]; then
-        alias S='sudo apt-get install '
+    elif [ -n "$(grep -i -e debian -e ubuntu /etc/os-release)" ]; then
+        alias S='sudo apt install '
 #        alias Ss='sudo apt-cache search '
 # use original apt to search; mint has a wrapper for apt, infomation is mess
 # add --names-only option if search keyword in package's name only
@@ -201,8 +200,8 @@ if [ -e /etc/os-release ]; then
         alias Qo='sudo apt-file search '
         alias Qi='sudo apt-cache show '
         alias Fl='sudo apt-file list '
-        alias Fy='sudo apt-get update && sudo apt-file update '
-        alias Syu='sudo apt-get upgrade '
+        alias Fy='sudo apt update && sudo apt-file update '
+        alias Syu='sudo apt upgrade '
     fi
 fi
 
@@ -216,15 +215,22 @@ alias em='emacs --nw'
 alias emacsd='\emacs -nw --daemon'
 alias emc='emacsclient -nw'
 alias mpv='mpv --hwdec=yes'
+# alias x='sway'
+alias x='startx'
 
 ########## END ALIASes ############
 
 ## for sway
-if [ -n "$(which sway)" ]; then
+if [[ -n "$(tty | grep pts)" && -n "$(ps x | grep [s]way)" ]]; then
     export GDK_BACKEND=wayland
     export QT_QPA_PLATFORM=wayland-egl
+    export QT_WAYLAND_FORCE_DPI=physical
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
     export CLUTTER_BACKEND=wayland
     export SDL_VIDEODRIVER=wayland
+    export ECORE_EVAS_ENGINE=wayland_egl
+    export ELM_ENGINE=wayland_egl
+    export _JAVA_AWT_WM_NONREPARENTING=1
 fi
 
 GO_WORKING_DIR=~/godir
@@ -233,7 +239,7 @@ export GO_PLAYGROUND_BASE_DIR="$GO_WORKING_DIR/src/goplayground"
 export GOPATH=$GO_WORKING_DIR:$GO_OTHER_PKG_DIR
 export PATH=$GO_WORKING_DIR/bin:$PATH
 
-if [ -d "HOME/.terminfo" ]; then
+if [ -d "$HOME/.terminfo" ]; then
     export TERM=xterm-24bit         # true color support, refer to terminal-truecolor-setup
     export COLORTERM=truecolor
 else
