@@ -77,6 +77,11 @@ WinSet, Style, +0xC00000, A
 return
 ;
 
+; Toggle Alwaysontop
+LWIN & F9::
+WinSet, Alwaysontop, , A
+;
+
 ; === INSTRUCTIONS ===
 ; Below is the alternate key configuration. Delete symbol ; in the beginning of the line to enable. 
 ; Note, that  ^!1  means "Ctrl + Alt + 1" and  ^#1  means "Ctrl + Win + 1"
