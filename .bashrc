@@ -233,11 +233,14 @@ if [[ -n "$(tty | grep pts)" && -n "$(ps x | grep [s]way)" ]]; then
     export _JAVA_AWT_WM_NONREPARENTING=1
 fi
 
-GO_WORKING_DIR=~/godir
-GO_OTHER_PKG_DIR=
+GO_WORKING_DIR=$HOME/go
+# GO_OTHER_PKG_DIR=
 export GO_PLAYGROUND_BASE_DIR="$GO_WORKING_DIR/src/goplayground"
-export GOPATH=$GO_WORKING_DIR:$GO_OTHER_PKG_DIR
-export PATH=$GO_WORKING_DIR/bin:$PATH
+# export GOPATH=$GO_WORKING_DIR:$GO_OTHER_PKG_DIR
+export GOPATH=$GO_WORKING_DIR
+export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
+# export GOPROXY="https://mirrors.aliyun.com/goproxy,https://goproxy.cn,https://goproxy.io"
+export GOPROXY="https://goproxy.cn,https://goproxy.io,direct"
 
 if [ -d "$HOME/.terminfo" ]; then
     export TERM=xterm-24bit         # true color support, refer to terminal-truecolor-setup
