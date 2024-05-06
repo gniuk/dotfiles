@@ -9,6 +9,13 @@ case $- in
       *) return;;
 esac
 
+# Work around __vte_prompt_command: command not found
+if [[ $(type -t "__vte_prompt_command") != function ]]; then
+    function __vte_prompt_command() {
+        return 0;
+    }
+fi
+
 ############## HISTORY OPTIONS ################
 
 # make C-s i-search, i.e. search forward
