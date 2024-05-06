@@ -161,6 +161,20 @@ edf () {
 alias gdf='export GDF_FAST=no; git difftool -t meld '
 alias gdff='export GDF_FAST=yes; git difftool -t meld '
 
+# ---------- udiskctrl mount and unmount ----------
+udm () {
+    device=$(lsblk -i -o name,label | grep $1 | awk '{print $1}' | awk -F'-' '{print $2}')
+    if [[ $device != "" ]]; then
+        udisksctl mount -b /dev/"$device"
+    fi
+}
+udum () {
+    device=$(lsblk -i -o name,label | grep $1 | awk '{print $1}' | awk -F'-' '{print $2}')
+    if [[ $device != "" ]]; then
+        udisksctl unmount -b /dev/"$device"
+    fi
+}
+
 ############ END CUSTOM FUNCTIONS ##############
 
 ############ ALIASes ##############
