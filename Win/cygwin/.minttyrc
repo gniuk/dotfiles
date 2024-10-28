@@ -26,3 +26,8 @@ Emojis=noto
 ZoomShortcuts=no
 BellType=0
 CtrlShiftShortcuts=yes
+
+# fallback font for other characters like symbols
+# Font=Consolas
+Font3=Symbols Nerd Font Mono
+FontChoice=Private:3
