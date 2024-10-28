@@ -31,3 +31,6 @@ CtrlShiftShortcuts=yes
 # Font=Consolas
 Font3=Symbols Nerd Font Mono
 FontChoice=Private:3
+
+# background color same as emacs, eliminate the splash when scroll
+BackgroundColour=41,43,46
